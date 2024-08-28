@@ -5,7 +5,7 @@ import { WebHtml, WebVideo } from "./components";
 function App() {
   return (
     <div className="viewerWrapper">
-      {/* <WebVideo /> */}
+      <WebVideo />
       <WebHtml />
     </div>
   );
