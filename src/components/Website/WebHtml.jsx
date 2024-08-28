@@ -2,7 +2,7 @@ import React from 'react'
 
 const WebHtml = () => {
   return (
-    <div>WebHtml</div>
+    <div className='htmlWrapper'>WebHtml</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const WebVideo = () => {
   return (
-    <div>WebVideo</div>
+    <div className='videoWrapper'>WebVideo</div>
   )
 }
 
