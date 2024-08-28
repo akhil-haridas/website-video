@@ -1,0 +1,51 @@
+import WebViewer from '@pdftron/webviewer';
+import { initializeHTMLViewer } from '@pdftron/webviewer-html';
+import React, { useEffect, useRef, useState } from 'react';
+
+const Viewer = ({ res, loadURL }) => {
+
+    const viewer = useRef(null);
+    const [HTMLModule, setHTMLModule] = useState(null);
+
+    useEffect(() => {
+        WebViewer(
+            {
+                path: '/lib',
+                disableVirtualDisplayMode: true,
+            },
+            viewer.current
+        ).then(async (instance) => {
+
+            const license = `---- Insert commercial license key here after purchase ----`;
+
+            // Extends WebViewer to allow loading HTML5 files from URL or static folder.
+            const htmlModule = await initializeHTMLViewer(instance, { license });
+
+            setHTMLModule(htmlModule);
+
+            loadURL(`https://docs.apryse.com/documentation/web/guides/html/load-html/`);
+
+            /* How to proxy with custom HTTP headers */
+            // loadURL(`https://www.pdftron.com/`, {
+            //   customheaders: JSON.stringify({
+            //     Authorization: 'token',
+            //     'custom-header': 'custom token',
+            //   }),
+            //   // invalid values: {}, { key: value }, "random string that can't be parsed"
+            // });
+        });
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if (HTMLModule && Object.keys(res).length > 0) {
+            const { iframeUrl, width, height, urlToProxy } = res;
+            HTMLModule.loadHTMLPage({ iframeUrl, width, height, urlToProxy });
+        }
+    }, [HTMLModule, res]);
+    return (
+        <div ref={viewer} className="HTMLViewer"></div>
+    )
+}
+
+export default Viewer
