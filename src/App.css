@@ -4,16 +4,28 @@ body {
 }
 
 .viewerWrapper {
-    background-color: aqua;
     width: 100vw;
     height: 100vh;
     display: flex;
     gap: 10px;
+    flex-direction: row;
 }
 
 .videoWrapper,
 .htmlWrapper {
-    background-color: aquamarine;
     height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.Nav {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 400px;
+    padding: 10px;
+}
+
+.HTMLViewer {
+    height: 100vh;
     width: 100%;
 }
